@@ -25,7 +25,10 @@ public class Api implements Urls {
 	}
 
 	public String SearchFood(String identification, String max, String offset, String sort) throws IOException {
-		return "";
+		JSONObject obj = requests.sendGet(searchUrl + "q=" + identification + "&sort=" + sort + "&max=" + max
+				+ "&offset=" + offset + "&api_key=" + tokenApi);
+
+		return obj.toString();
 	}
 
 	public String SearchFoodReport(String identification) {

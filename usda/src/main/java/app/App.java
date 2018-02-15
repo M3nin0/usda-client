@@ -10,6 +10,7 @@ public class App {
 		
 		try {
 			System.out.println(api.SearchFood("butter"));
+//			System.out.println(api.SearchFood("butter", "1", "0", "r"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
