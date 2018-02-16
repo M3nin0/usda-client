@@ -7,10 +7,13 @@ import usda.Api;
 public class App {
 	public static void main(String[] args) {
 		Api api = new Api("DEMO_KEY");
-		
 		try {
+			System.out.println("Food Search");
 			System.out.println(api.SearchFood("butter"));
-//			System.out.println(api.SearchFood("butter", "1", "0", "r"));
+			System.out.println("Food Search - Complete");
+			System.out.println(api.SearchFood("45163330", "r", "15", "0"));
+			System.out.println("Search food report - Basic");
+			System.out.println(api.SearchFoodReport("01009", "b"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
