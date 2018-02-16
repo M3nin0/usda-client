@@ -107,7 +107,60 @@ public class Api implements Urls {
 		return null;
 	}
 
-	public String getListOfFood(String... args) {
-		return "";
+	/**
+	 * You may request a list of foods, nutrients or food groups
+	 * 
+	 * @param lt
+	 *            list type(lt): d = derivation codes, f = food , n = all nutrients,
+	 *            ns = speciality nutrients, nr = standard release nutrients only,g
+	 *            = food group
+	 * @param max
+	 *            maximum number of items to return
+	 * @param offset
+	 *            beginning item in the result set
+	 * @param sort
+	 *            sort order: n=name or id (Meaning of id varies by list type:
+	 *            nutrient number for a nutrient list, NDBno for a foods list ,food
+	 *            group id for a food group list
+	 * @param args
+	 *            Represents all parameters
+	 * @return
+	 * @throws IOException
+	 */
+	public JSONObject getListOfFood(String... args) throws IOException {
+
+		String list = "d";
+		String sort = "n";
+		String max = "50";
+		String offset = "0";
+
+		if (args != null) {
+			if (args.length == 1) {
+				list = args[0];
+			}
+
+			else if (args.length == 2) {
+				list = args[0];
+				max = args[1];
+			}
+
+			else if (args.length == 3) {
+				list = args[0];
+				max = args[1];
+				offset = args[2];
+			}
+
+			else if (args.length == 4) {
+				list = args[0];
+				max = args[1];
+				offset = args[3];
+				sort = args[4];
+			}
+
+			return requests.sendGet(listsUrl + "lt=" + list + "&sort=" + sort + "&max=" + max + "&offset=" + offset
+					+ "&api_key=" + tokenApi);
+		}
+
+		return null;
 	}
 }
